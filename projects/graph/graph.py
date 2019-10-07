@@ -48,14 +48,33 @@ class Graph:
         #      Get adjacent edges and add to list
                 for next_vert in self.vertices[vertex]:
                     qq.enqueue(next_vert)
-        # Goto top of loop
-        pass  # TODO
+
     def dft(self, starting_vertex):
         """
         Print each vertex in depth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        # BFT Pseudocode
+        # Create a queue
+        stack = Stack()
+        # Create list of visited nodes- set or list works fine
+        visited = set()
+        # Put starting node in the queue
+        stack.push(starting_vertex)
+        # While: queue not empty
+        while stack.size() > 0:
+        # Pop first node out of queue
+            vertex = stack.pop()
+        # If not visited
+            if vertex not in visited:
+                visited.add(vertex)
+                # Print according to specs
+                print(vertex)
+        #      Mark as visited
+        #      Get adjacent edges and add to list
+                for next_vert in self.vertices[vertex]:
+                    stack.push(next_vert)
+                    
     def dft_recursive(self, starting_vertex):
         """
         Print each vertex in depth-first order
