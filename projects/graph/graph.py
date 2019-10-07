@@ -11,17 +11,44 @@ class Graph:
         """
         Add a vertex to the graph.
         """
-        pass  # TODO
+        self.vertices[vertex] = set()
+
     def add_edge(self, v1, v2):
         """
         Add a directed edge to the graph.
         """
-        pass  # TODO
+        if v1 in self.vertices and v2 in self.vertices:
+            self.vertices[v1].add(v2)
+        else:
+            # raise is like throw in JS
+            raise IndexError("Cannot create given these vertices")
+
     def bft(self, starting_vertex):
         """
         Print each vertex in breadth-first order
         beginning from starting_vertex.
         """
+        # BFT Pseudocode
+        # Create a queue
+        qq = Queue()
+        # Create list of visited nodes- set or list works fine
+        visited = set()
+        # Put starting node in the queue
+        qq.enqueue(starting_vertex)
+        # While: queue not empty
+        while qq.size() > 0:
+        # Pop first node out of queue
+            vertex = qq.dequeue()
+        # If not visited
+            if vertex not in visited:
+                visited.add(vertex)
+                # Print according to specs
+                print(vertex)
+        #      Mark as visited
+        #      Get adjacent edges and add to list
+                for next_vert in self.vertices[vertex]:
+                    qq.enqueue(next_vert)
+        # Goto top of loop
         pass  # TODO
     def dft(self, starting_vertex):
         """
