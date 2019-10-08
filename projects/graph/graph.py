@@ -92,7 +92,7 @@ class Graph:
             if child_vertex not in visited:
                 self.dft_recursive(child_vertex, visited)
 
-                
+
     def bfs(self, starting_vertex, destination_vertex):
         """
         Return a list containing the shortest path from
@@ -110,18 +110,34 @@ class Graph:
             #     visited.add(vertex)
             #     print(vertex)
             #     return "TESTING both conditions"
-            if vertex is not destination_vertex and vertex not in visited:
-                visited.add(vertex)
-                print(vertex)
-                for next_vert in self.vertices[vertex]:
-                    if next_vert is not destination_vertex:
-                        print("next in line", next_vert)
-                        qq.enqueue(next_vert)
-                    elif next_vert is destination_vertex:
-                        qq.enqueue(next_vert)
-                        visited.add(next_vert)
-                        print(visited)
-                        return "End of the Line"
+            # if vertex is not destination_vertex and vertex not in visited:
+            #     visited.add(vertex)
+            #     print(vertex)
+            #     for next_vert in self.vertices[vertex]:
+            #         if next_vert is not destination_vertex:
+            #             print("next in line", next_vert)
+            #             qq.enqueue(next_vert)
+            #         elif next_vert is destination_vertex:
+            #             qq.enqueue(next_vert)
+            #             visited.add(next_vert)
+            #             print(visited)
+            #             return "End of the Line"
+            # Alternate Approach
+            qq = Queue()
+            visited = set()
+            qq.enqueue([starting_vertex])
+            while qq.size() > 0:
+                path = qq.dequeue()
+                vertex = path[-1]
+                if vertex not in visited:
+                    if vertex is destination_vertex:
+                        return path
+                    visited.add(vertex)
+                    for next_vert in self.vertices[vertex]:
+                        # list of potential solutions
+                        new_path = list(path)
+                        new_path.append(next_vert)
+                        qq.enqueue(new_path)
 
     def dfs(self, starting_vertex, destination_vertex):
         """
