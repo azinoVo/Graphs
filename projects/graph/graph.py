@@ -75,7 +75,7 @@ class Graph:
                 for next_vert in self.vertices[vertex]:
                     stack.push(next_vert)
 
-    def dft_recursive(self, starting_vertex, visited={}):
+    def dft_recursive(self, starting_vertex, visited=None):
         """
         Print each vertex in depth-first order
         beginning from starting_vertex.
@@ -84,8 +84,15 @@ class Graph:
         # Need a base case and progressively reach the base case
         # Visited stores the nodes that we have visited already;
         # vertices added with each recursion
+        if visited is None:
+            visited=set()
+        print(starting_vertex)
+        visited.add(starting_vertex)
+        for child_vertex in self.vertices[starting_vertex]:
+            if child_vertex not in visited:
+                self.dft_recursive(child_vertex, visited)
 
-        pass  # TODO
+                
     def bfs(self, starting_vertex, destination_vertex):
         """
         Return a list containing the shortest path from
