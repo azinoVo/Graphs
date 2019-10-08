@@ -112,6 +112,7 @@ class Graph:
                         qq.enqueue(next_vert)
                     elif next_vert is destination_vertex:
                         qq.enqueue(next_vert)
+                        visited.add(next_vert)
                         print(visited)
                         return "End of the Line"
 
